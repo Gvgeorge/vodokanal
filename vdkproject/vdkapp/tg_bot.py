@@ -1,12 +1,13 @@
 
-from .models import Order, TGUser
+import time
+import os
+
 import telepot
 from telepot.loop import MessageLoop
-import time
 
-API_TOKEN = '5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw'
+from .models import Order, TGUser
 
-# Initialize bot and dispatcher
+API_TOKEN = os.getenv('TG_API_KEY')
 
 
 def handle(msg):
@@ -35,7 +36,5 @@ def main():
     print('Listening ...')
     while 1:
         time.sleep(10)
-
-
 
 

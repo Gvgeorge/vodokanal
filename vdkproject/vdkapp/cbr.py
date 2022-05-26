@@ -1,6 +1,7 @@
-import requests
-from datetime import datetime
 import xml.etree.ElementTree as etree
+from datetime import datetime
+
+import requests
 from django.conf import settings
 
 

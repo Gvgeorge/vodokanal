@@ -1,8 +1,9 @@
-from django.db import models
 from datetime import datetime
-from .cbr import ExchangerUSD, Exchanger
-from django.conf import settings
+
 import pytz
+from django.db import models
+
+from .cbr import Exchanger, ExchangerUSD
 
 
 class Order(models.Model):
