@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "vodokanal-350913",
+  "private_key_id": "080fcf80dd3ea26cf98c4a54e80e6c9f256d9e04",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDMkZqeqkgjTwHW\nVTQb8Tx1sULgL3KrPFB45EjPGJS9v70MePusIs7pRIuAVlETTcEv+VuDW0J2gG6N\naoMKB4NFdD6gaSJOCLx0r4U4Lm0VTcl01p3zy11somp9tiOFFR4/WPefn8o97dt3\nVBA/FxmH5nM2c+FHs01ZlWbiqyD2bMpwoHTpLvwOAuwNvDM/rtxVX2hFOXpZlzNc\nWlx9sEmP1baBtdaEVg7n4d221lYAGxow9o+6kxUoc8CQ+hb1OPPFvGU3LmlFaGo2\n1tdtvjAYrIW2PGHcAkbxPy3sdgs0bU8sZEdNneLSKsd4ChxBo/4zOnRUBujypF4+\nYZlmSt55AgMBAAECggEAELSzU9HEIl4JYF+E6eNBdLsNIxG8448BY14BNChlvTkz\nTxlyNBSDoTkfy1NBO7pV1H0gpBGH0/WZEaNpICCM79cWZjMvwf+kpELRNk1USzEX\nCpucOpSZBI4e9DUzoWKgHbw+PKLn+Ta7fXs3+G8Cfr6rGf9MnnZeErrItCoVfwot\n1p42vuvI03TIwp2+/iDPQ+APzioxqqOW2RU6y0prBH+sSxN8g9VRJ3/B7RDja4O/\nIXdy1GTqDI3l6bxi1HUBaMPXeHIvNryOL8Nv64ArLod1SJRcUzu6P2Jo022jH7OY\nHvGdkAIIrLiJY6SSgAZeWBMhSt6pQGcFXEXk337SoQKBgQD6b751al1k7vH/ETRp\nYMd094FkAAnoj/orUAlzrY4uwGP+WEURfwIcLS960wVoscVAu64UTGMw+lgL+W6w\nKbyRKOXVl+OHNJCzPafyG14//ze9vxw+fTbP1mKhl/9slzoo7Szlf8PYgj5b2jtZ\nokKeMxeJ3skHq4CpXVZRyRaB2wKBgQDRHQGAls4okZiRjykxxOR3mNRGLDedCUQu\n2yPz4qJggaKpfUD04s0DVgNxM0ZhbJr8B+j+f809RRIFWdOBinEB5/ibR5WEpwxJ\nU2nXNtGmsN0Qq0ezRSdsn83/O0gBFcya1kjE1egqg+hNL7LqMwu8rcs4nc5UHvJz\nSVrRfy4jOwKBgQCpSoyHNsW3i0cPU4QIkCGE0iMnhFcuXNWSHeKlzfbFZ8ywjN7z\nutWkUm88KhYH9dQPtE8y7YhH/ZMzVQQcFbqgrfLf9nMaXNBMOiujoBiQTmhR3jSr\nkV1SFexKrENAFuJ79Ahbg4jSfQjGcrmYF/XMl2EcE/v1MVwiITROyQ5r7QKBgC90\nzrd5AfZQ/HfkLmweC99cbqgyNrjLto6PqvwZLdKK+PhP9aLdqbsdFRDmmw1XEWEr\nBmRjapeCClHujcJzQaw2EcRjnXoKUw59AKMXzMJwlurGhDIZ+pV7Osu2j2O3p8Rn\n5wHMrbCgWOLTdV4TEZHTOzBxF7cdgtZJCnRK0ZSrAoGAAZQLCMAK+XrVLsRMXxHB\nS0GQhqenR22Tbx0BAIhFcPA44Tp+Y6JHza+wGqqTj4Hc6eHhp1oNBZwXPBSPLc07\nmBSYHJMGXAuYmhD7uRjuDKwaDiU8IqvoShV/lHXQOI6oxpL3gu+Ri+eLl3rd3C39\ngjZBMBgT8OIjbkWN7YhxWNE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vodokonal@vodokanal-350913.iam.gserviceaccount.com",
+  "client_id": "114608397241804213745",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vodokonal%40vodokanal-350913.iam.gserviceaccount.com"
+}

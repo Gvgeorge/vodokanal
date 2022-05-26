@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: pg_db
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_DB: "vdkdb"
+      POSTGRES_USER: "vdkuser"
+      POSTGRES_PASSWORD: "vdkpass"
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    volumes:
+      - .:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - vdknetwork
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "gvgeorge@mail.ru"
+      PGADMIN_DEFAULT_PASSWORD: "vdkpass"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    ports:
+      - "5050:80"
+    restart: unless-stopped
+
+    networks:
+      - vdknetwork
+
+  redis:
+      image: "redis:alpine"
+
+      ports:
+        - "6379:6379"
+
+      volumes:
+        - $PWD/redis-data:/var/lib/redis
+        - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+
+      environment:
+        - REDIS_REPLICATION_MODE=master
+
+      networks:
+        - vdknetwork
+
+networks:
+  vdknetwork:
+    driver: bridge
