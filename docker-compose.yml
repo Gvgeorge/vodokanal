@@ -52,11 +52,16 @@ services:
   vodokanal:
     build: .
     container_name: vodokanal
+    environment:
+      DJANGO_SECRET_KEY: "django-insecure-@cr8c#d-_$$%bvt#&fy1vtmo9ln8yu#50(q7ck#vg$$i0$$a7ashh"
+      TG_API_KEY: "5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw"
     depends_on:
       - postgres
       - redis
     command: 
       sh -c "python3 manage.py migrate"
+      sh -c "python3 manage.py run_bot"
+
     ports:
         - 8000:8000
     networks:
@@ -65,6 +70,10 @@ services:
   celery:
     build: .
     command: celery -A vdkproject worker -l info
+    environment:
+      DJANGO_SECRET_KEY: "django-insecure-@cr8c#d-_$$%bvt#&fy1vtmo9ln8yu#50(q7ck#vg$$i0$$a7ashh"
+      TG_API_KEY: "5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw"
+
     volumes:
       - .:/code
     depends_on:
@@ -76,6 +85,9 @@ services:
   celery-beat:
     build: .
     command: celery -A vdkproject beat -l info
+    environment:
+      DJANGO_SECRET_KEY: "django-insecure-@cr8c#d-_$$%bvt#&fy1vtmo9ln8yu#50(q7ck#vg$$i0$$a7ashh"
+      TG_API_KEY: "5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw"
     volumes:
       - .:/code
     depends_on:
