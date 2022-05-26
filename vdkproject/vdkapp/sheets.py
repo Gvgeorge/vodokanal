@@ -41,6 +41,9 @@ def read_values(service: Resource,
 
 
 def parse_values_for_db(values: list) -> list:
+    '''
+    Проверяет/конвертирует данные на соответствие полям в БД
+    '''
     values = values['valueRanges'][0]['values'][1:]
     response = []
     for row in values:

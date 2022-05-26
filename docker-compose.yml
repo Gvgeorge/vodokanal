@@ -32,6 +32,8 @@ services:
       - vdknetwork
 
   redis:
+      container_name: redis
+
       image: "redis:alpine"
 
       ports:
@@ -46,6 +48,42 @@ services:
 
       networks:
         - vdknetwork
+
+  vodokanal:
+    build: .
+    container_name: vodokanal
+    depends_on:
+      - postgres
+      - redis
+    command: 
+      sh -c "python3 manage.py migrate"
+    ports:
+        - 8000:8000
+    networks:
+      - vdknetwork
+
+  celery:
+    build: .
+    command: celery -A vdkproject worker -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - vdknetwork
+
+  celery-beat:
+    build: .
+    command: celery -A vdkproject beat -l info
+    volumes:
+      - .:/code
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - vdknetwork
+
 
 networks:
   vdknetwork:

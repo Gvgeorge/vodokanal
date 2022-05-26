@@ -2,7 +2,7 @@ from django.core.exceptions import ValidationError
 from dateutil.parser import parse
 
 
-def is_number(n):
+def is_number(n: str) -> bool:
     try:
         float(n)   # Type-casting the string to `float`.
                    # If string is not a valid `float`, 

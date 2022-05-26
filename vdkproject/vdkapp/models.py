@@ -17,6 +17,9 @@ class Order(models.Model):
 
     @classmethod
     def _update_or_create_from_sheets(cls, row: dict) -> None:
+        '''
+        Записывает строку из google sheets в базу данных
+        '''
         usd_rate = Rates.get_exchange_rate(row['date'])
         row['amount_rub'] = row['amount_usd'] * usd_rate
         row['amount_usd'] *= 10000
@@ -27,15 +30,26 @@ class Order(models.Model):
 
     @classmethod
     def sync_with_sheets(cls, rows: list) -> None:
+        '''
+        получает на вход список строк полученных их google sheets
+        синхронизирует с ними БД
+        '''
+        # Удаление
         db_ids = set([id[0] for id in Order.objects.all().values_list('pk')])
         sheet_ids = [row['order_id'] for row in rows]
         orders_to_delete = db_ids.difference(sheet_ids)
         cls.objects.filter(order_id__in=orders_to_delete).delete()
+        # добавление/обновление
         for row in rows:
             cls._update_or_create_from_sheets(row)
 
 
 class Rates(models.Model):
+    '''
+    так как курс ЦБ задним числом не изменяется, вижу полезным хранить
+    его в своей БД.
+    курс тоже сохраняется в формате курс*10000
+    '''
     date = models.DateField(unique=True)
     rate = models.IntegerField()
 
@@ -45,7 +59,10 @@ class Rates(models.Model):
     def get_exchange_rate(cls,
                           date: datetime.date,
                           ) -> float:
-        print(date)
+        '''
+        Возвращает курс на дату из БД, если не находит, то идет на сайт ЦБ,
+        получает его там, сохраняет в бд и возвращает.
+        '''
         obj, created = cls.objects.get_or_create(
             date=date,
             defaults={'rate': cls.exchanger.parse_web_exchange_data(

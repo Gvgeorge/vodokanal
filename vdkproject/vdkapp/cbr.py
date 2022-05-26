@@ -18,6 +18,9 @@ class Exchanger:
 
 
 class ExchangerUSD(Exchanger):
+    '''
+    Класс ответственный за получение и парсинг информации с сайта ЦБ
+    '''
     cbr_url: str = settings.CBR_URL
     currency_id: str = settings.USD_ID
 
