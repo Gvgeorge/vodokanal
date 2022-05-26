@@ -11,6 +11,10 @@ app.conf.beat_schedule = {
     'update_order_table_60s': {
         'task': 'vdkapp.tasks.update_order_table',
         'schedule': 60.0
+    },
+    'send_report_60s': {
+        'task': 'vdkapp.tasks.send_report',
+        'schedule': 60.0
     }
 }
 app.autodiscover_tasks()

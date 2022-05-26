@@ -2,6 +2,7 @@ from django.db import models
 from datetime import datetime
 from .cbr import ExchangerUSD, Exchanger
 from django.conf import settings
+import pytz
 
 
 class Order(models.Model):
@@ -14,6 +15,7 @@ class Order(models.Model):
     amount_usd = models.IntegerField()
     amount_rub = models.IntegerField()
     date = models.DateField()
+    message_sent = models.BooleanField(default=False)
 
     @classmethod
     def _update_or_create_from_sheets(cls, row: dict) -> None:
@@ -43,6 +45,18 @@ class Order(models.Model):
         for row in rows:
             cls._update_or_create_from_sheets(row)
 
+    @classmethod
+    def prepare_query_for_tg_message(cls):
+        '''
+        Подготавливает данные для рассылки и обновляет поле message_sent
+        '''
+        timezone = pytz.timezone('Europe/Moscow')
+        now = datetime.now().replace(tzinfo=pytz.utc).astimezone(timezone)
+        query = cls.objects.filter(date__lte=now).filter(message_sent=False)
+        data = list(query.values_list('pk', 'amount_usd'))[:]
+        query.update(message_sent=True)
+        return data
+
 
 class Rates(models.Model):
     '''
@@ -69,3 +83,10 @@ class Rates(models.Model):
                             cls.exchanger.get_exchange_data_web(date))*10000
                       })
         return obj.rate
+
+
+class TGUser(models.Model):
+    '''
+    Хранилище telegram chat_id для рассылки.
+    '''
+    tg_id = models.IntegerField(primary_key=True)

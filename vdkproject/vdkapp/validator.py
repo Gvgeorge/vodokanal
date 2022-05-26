@@ -12,7 +12,10 @@ def is_number(n: str) -> bool:
     return True
 
 
-def validate_order_row(row):
+def validate_order_row(row: list):
+    '''
+    Ensures that the input data is valid
+    '''
     if len(row) != 4:
         raise ValidationError(('%(row)s is not an even number'),
                               params={'row': row},)

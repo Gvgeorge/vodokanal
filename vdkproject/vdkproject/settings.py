@@ -80,7 +80,8 @@ DATABASES = {
         'NAME': 'vdkdb',
         'USER': 'vdkuser',
         'PASSWORD': 'vdkpass',
-        'HOST': 'postgres',
+        'HOST': 'localhost', 
+        # 'HOST': 'postgres', 
         'PORT': '5432',
     }
 }
@@ -129,10 +130,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Celery / redis
 
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_BROKER_URL = 'redis://redis:6379'
-CELERY_RESULT_BACKEND = 'redis://redis:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://redis:6379'
+# CELERY_RESULT_BACKEND = 'redis://redis:6379'
 
 # CBR
 
