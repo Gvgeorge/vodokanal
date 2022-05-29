@@ -8,20 +8,27 @@ from .cbr import Exchanger, ExchangerUSD
 
 class Order(models.Model):
     '''
-    All currency is stored in 1/10000 of the units
-    e.g. 1$ = 10000 currency units stored
+    Сумма в валюте хранится умноженной на 10 000, чтобы избежать 
+    проблем с флоатами в пайтоне.
     '''
     order_id = models.IntegerField(primary_key=True)
-    row_id = models.IntegerField()
-    amount_usd = models.IntegerField()
-    amount_rub = models.IntegerField()
-    date = models.DateField()
-    message_sent = models.BooleanField(default=False)
+    row_id = models.IntegerField(verbose_name='Номер строки в google sheets')
+    amount_usd = models.IntegerField(verbose_name="Сумма в долларах * 10 000")
+    amount_rub = models.IntegerField(verbose_name="Сумма в рублях * 10 000")
+    date = models.DateField(verbose_name="Дата заказа")
+    message_sent = models.BooleanField(
+        verbose_name="Уведомление о готовности заказа отправлено",
+        default=False)
 
     @classmethod
     def _update_or_create_from_sheets(cls, row: dict) -> None:
         '''
         Записывает строку из google sheets в базу данных
+        Строка должна быть следующего формата формата:
+        {'row_id': int,
+        'order_id': int,
+        'amount_usd': float,
+        'date': datetime.date}
         '''
         usd_rate = Rates.get_exchange_rate(row['date'])
         row['amount_rub'] = row['amount_usd'] * usd_rate
@@ -63,7 +70,7 @@ class Rates(models.Model):
     '''
     так как курс ЦБ задним числом не изменяется, вижу полезным хранить
     его в своей БД.
-    курс тоже сохраняется в формате курс*10000
+    курс тоже сохраняется в формате курс*10 000
     '''
     date = models.DateField(unique=True)
     rate = models.IntegerField()
@@ -75,8 +82,9 @@ class Rates(models.Model):
                           date: datetime.date,
                           ) -> float:
         '''
-        Возвращает курс на дату из БД, если не находит, то идет на сайт ЦБ,
-        получает его там, сохраняет в бд и возвращает.
+        Возвращает курс из БД на заданную дату, если не находит в БД,
+        то идет на сайт ЦБ,
+        получает его там, сохраняет в БД и возвращает.
         '''
         obj, created = cls.objects.get_or_create(
             date=date,

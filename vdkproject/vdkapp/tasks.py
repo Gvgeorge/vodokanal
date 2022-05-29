@@ -1,7 +1,8 @@
-from .sheets import create_gsheets_service, read_values, parse_values_for_db
-from django.conf import settings
-from .models import Order
 from celery import shared_task
+from django.conf import settings
+
+from .models import Order
+from .sheets import create_gsheets_service, parse_values_for_db, read_values
 from .tg_bot import send_order_data
 
 

@@ -12,7 +12,7 @@ from .validator import validate_order_row
 # Авторизуемся и получаем service — экземпляр доступа к API
 def create_gsheets_service(cred_file: IO) -> Resource:
     '''
-    Авторизуемся и получаем service — экземпляр доступа к API
+    Авторизуется и получает service — экземпляр доступа к API
     cred_file - файл с креденшиалами, который выдает гуглапи
     '''
     credentials = ServiceAccountCredentials.from_json_keyfile_name(

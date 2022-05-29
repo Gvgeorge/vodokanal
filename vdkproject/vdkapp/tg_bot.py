@@ -11,6 +11,9 @@ API_TOKEN = os.getenv('TG_API_KEY')
 
 
 def handle(msg):
+    '''
+    Заносит телеграмм ид пользователя в БД для последующей рассылки
+    '''
     content_type, chat_type, chat_id = telepot.glance(msg)
     print(content_type, chat_type, chat_id)
 
@@ -19,6 +22,9 @@ def handle(msg):
  
 
 def send_order_data():
+    '''
+    Составляет сообщение о готовности заказов и отсылает его
+    '''
     msg = ''
     orders = Order.prepare_query_for_tg_message()
     if orders:
