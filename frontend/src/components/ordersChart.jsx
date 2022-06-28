@@ -1,28 +1,11 @@
-import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from 'chart.js/auto';
 import {CategoryScale} from 'chart.js'; 
-import axios from "axios";
 
 Chart.register(CategoryScale);
 
 
-
-const OrdersChart = () => {
-    let [orders, setOrders] = useState([]);
-
-    useEffect(() => {getOrders()}, [])
-
-    let getOrders = () => {
-        axios.get('http://localhost:5555/')
-          .then(function (response) {
-            let data = response.data['orders'];
-            setOrders(data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-      }
+const OrdersChart = ({orders}) => {
     let sortedOrders = orders.sort(function (a, b) {
         return (new Date(a['date']) - new Date(b['date']))}
         )

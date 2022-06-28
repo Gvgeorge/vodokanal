@@ -1,22 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
-
-const Table = () => {
-    let [orders, setOrders] = useState([]);
-
-    useEffect(() => {getOrders()}, [])
-
-    let getOrders = () => {
-        axios.get('http://localhost:5555/')
-          .then(function (response) {
-            let data = response.data['orders'];
-            setOrders(data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-      }
+const Table = ({orders}) => {
 
     return (
         <div className="orders">
