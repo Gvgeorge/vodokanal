@@ -26,7 +26,8 @@ function App() {
           })
   };
 
-  setInterval(getOrders, 30000)
+  setInterval(getOrders, 60000)
+  
   return (
 
     <div className="App">
