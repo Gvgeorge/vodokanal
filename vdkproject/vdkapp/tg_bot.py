@@ -1,4 +1,3 @@
-
 import time
 import os
 
@@ -7,19 +6,21 @@ from telepot.loop import MessageLoop
 
 from .models import Order, TGUser
 
+
 API_TOKEN = os.getenv('TG_API_KEY')
+bot = telepot.Bot(API_TOKEN)
 
 
 def handle(msg):
     '''
-    Заносит телеграмм ид пользователя в БД для последующей рассылки
+    Заносит telegram_id пользователя в БД для последующей рассылки
     '''
     content_type, chat_type, chat_id = telepot.glance(msg)
-    print(content_type, chat_type, chat_id)
 
     if msg['text'] == '/start':
         TGUser.objects.get_or_create(tg_id=chat_id)
- 
+    bot.sendMessage(chat_id, 'message received')
+
 
 def send_order_data():
     '''
@@ -32,9 +33,6 @@ def send_order_data():
             msg += f'Пришел заказ #{order[0]} на сумму {order[1]/10000}\n'
         for user in TGUser.objects.all():
             bot.sendMessage(user.tg_id, msg[:-1])
-
-
-bot = telepot.Bot(API_TOKEN)
 
 
 def main():
