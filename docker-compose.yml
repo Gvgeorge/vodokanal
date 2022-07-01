@@ -94,6 +94,20 @@ services:
     networks:
       - vdknetwork
 
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    depends_on:
+      - postgres
+      - redis
+      - backend
+      
+    command: npm start
+
+    ports:
+        - "3000:3000"
+    networks:
+      - vdknetwork
 
 networks:
   vdknetwork:

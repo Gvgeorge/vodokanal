@@ -15,7 +15,7 @@ function App() {
 
   let getOrders = () => {
     axios
-      .get("http://localhost:5555/")
+      .get("http://localhost:7777/")
       .then(function (response) {
         let data = response.data["orders"];
         setOrders(data);
