@@ -54,7 +54,7 @@ services:
     container_name: backend
     environment:
       DJANGO_SECRET_KEY: "django-insecure-@cr8c#d-_$$%bvt#&fy1vtmo9ln8yu#50(q7ck#vg$$i0$$a7ashh"
-      TG_API_KEY: "5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw"
+      TG_API_KEY: ""
     depends_on:
       - postgres
       - redis
@@ -70,7 +70,7 @@ services:
     command: celery -A vdkproject worker -l info
     environment:
       DJANGO_SECRET_KEY: "django-insecure-@cr8c#d-_$$%bvt#&fy1vtmo9ln8yu#50(q7ck#vg$$i0$$a7ashh"
-      TG_API_KEY: "5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw"
+      TG_API_KEY: ""
 
     volumes:
       - .:/code
@@ -85,7 +85,7 @@ services:
     command: celery -A vdkproject beat -l info
     environment:
       DJANGO_SECRET_KEY: "django-insecure-@cr8c#d-_$$%bvt#&fy1vtmo9ln8yu#50(q7ck#vg$$i0$$a7ashh"
-      TG_API_KEY: "5363088590:AAHQpK6G30VyGQvo0kEWJk2ZyLE2JnWkKkw"
+      TG_API_KEY: ""
     volumes:
       - .:/code
     depends_on:
